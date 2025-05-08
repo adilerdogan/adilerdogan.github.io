@@ -1,6 +1,7 @@
 'use client';
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -137,16 +138,31 @@ export default function Home() {
     }
   ];
 
+  const fadeInUp = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.5 }
+  };
+
+  const staggerContainer = {
+    animate: {
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen">
       {/* Hero Section with Slider */}
       <section id="anasayfa" className="relative h-screen">
         {slides.map((slide, index) => (
-          <div
+          <motion.div
             key={index}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
-              index === currentSlide ? 'opacity-100' : 'opacity-0'
-            }`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: index === currentSlide ? 1 : 0 }}
+            transition={{ duration: 1 }}
+            className={`absolute inset-0`}
           >
             <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 via-gray-900/50 to-transparent z-10" />
             <Image
@@ -158,14 +174,34 @@ export default function Home() {
             />
             <div className="relative z-20 h-full flex items-center">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                <div className="max-w-2xl">
-                  <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 transform transition-all duration-1000 translate-y-0">
+                <motion.div 
+                  className="max-w-2xl"
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                >
+                  <motion.h1 
+                    className="text-4xl md:text-6xl font-bold text-white mb-6"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                  >
                     {slide.title}
-                  </h1>
-                  <p className="text-xl md:text-2xl text-gray-200 mb-8 transform transition-all duration-1000 translate-y-0">
+                  </motion.h1>
+                  <motion.p 
+                    className="text-xl md:text-2xl text-gray-200 mb-8"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.6 }}
+                  >
                     {slide.description}
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-4">
+                  </motion.p>
+                  <motion.div 
+                    className="flex flex-col sm:flex-row gap-4"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.8 }}
+                  >
                     <button
                       onClick={() => document.getElementById('iletisim')?.scrollIntoView({ behavior: 'smooth' })}
                       className="px-8 py-4 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 transition duration-300 shadow-lg hover:shadow-xl"
@@ -178,17 +214,22 @@ export default function Home() {
                     >
                       Hizmetlerimiz
                     </button>
-                  </div>
-                </div>
+                  </motion.div>
+                </motion.div>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
 
         {/* Slider Navigation Dots */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex space-x-3">
+        <motion.div 
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex space-x-3"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 1 }}
+        >
           {slides.map((_, index) => (
-            <button
+            <motion.button
               key={index}
               onClick={() => setCurrentSlide(index)}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
@@ -196,20 +237,29 @@ export default function Home() {
                   ? 'bg-white scale-125' 
                   : 'bg-white/50 hover:bg-white/75'
               }`}
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.9 }}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}
-        </div>
+        </motion.div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-8 z-20 hidden md:block">
+        <motion.div 
+          className="absolute bottom-8 left-8 z-20 hidden md:block"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 1.2 }}
+        >
           <div className="flex flex-col items-center space-y-2">
             <span className="text-white text-sm font-medium">Aşağı Kaydır</span>
-            <svg 
-              className="w-6 h-6 text-white animate-bounce" 
+            <motion.svg 
+              className="w-6 h-6 text-white" 
               fill="none" 
               stroke="currentColor" 
               viewBox="0 0 24 24"
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
             >
               <path 
                 strokeLinecap="round" 
@@ -217,84 +267,125 @@ export default function Home() {
                 strokeWidth={2} 
                 d="M19 14l-7 7m0 0l-7-7m7 7V3" 
               />
-            </svg>
+            </motion.svg>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Features Section */}
       <section className="py-20 bg-gray-50 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
               Neden Bizi Tercih Etmelisiniz?
             </h2>
             <p className="mt-4 text-lg text-gray-600">
               Profesyonel hizmet anlayışımız ve uzman ekibimizle fark yaratıyoruz
             </p>
-          </div>
+          </motion.div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Feature 1 */}
-            <div className="bg-white p-6 rounded-lg shadow-lg">
-              <div className="text-blue-600 mb-4">
-                <svg className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Uzman Ekip</h3>
-              <p className="text-gray-700">Deneyimli ve profesyonel kuaförlerimizle hizmetinizdeyiz.</p>
-            </div>
-
-            {/* Feature 2 */}
-            <div className="bg-white p-6 rounded-lg shadow-lg">
-              <div className="text-blue-600 mb-4">
-                <svg className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Hızlı Hizmet</h3>
-              <p className="text-gray-700">Zamanınızı değerli kılıyor, hızlı ve kaliteli hizmet sunuyoruz.</p>
-            </div>
-
-            {/* Feature 3 */}
-            <div className="bg-white p-6 rounded-lg shadow-lg">
-              <div className="text-blue-600 mb-4">
-                <svg className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Modern Teknikler</h3>
-              <p className="text-gray-700">En son trendleri ve modern teknikleri uyguluyoruz.</p>
-            </div>
-          </div>
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            {/* Feature cards with animations */}
+            {[
+              {
+                title: "Uzman Ekip",
+                description: "Deneyimli ve profesyonel kuaförlerimizle hizmetinizdeyiz.",
+                icon: "shield"
+              },
+              {
+                title: "Hızlı Hizmet",
+                description: "Zamanınızı değerli kılıyor, hızlı ve kaliteli hizmet sunuyoruz.",
+                icon: "clock"
+              },
+              {
+                title: "Modern Teknikler",
+                description: "En son trendleri ve modern teknikleri uyguluyoruz.",
+                icon: "star"
+              }
+            ].map((feature, index) => (
+              <motion.div
+                key={index}
+                className="bg-white p-6 rounded-lg shadow-lg"
+                variants={fadeInUp}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+              >
+                <div className="text-blue-600 mb-4">
+                  <svg className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    {feature.icon === "shield" && (
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    )}
+                    {feature.icon === "clock" && (
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    )}
+                    {feature.icon === "star" && (
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                    )}
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{feature.title}</h3>
+                <p className="text-gray-700">{feature.description}</p>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
       {/* Hizmetler Section */}
       <section id="hizmetler" className="py-20 bg-white scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
               Hizmetlerimiz
             </h2>
             <p className="mt-4 text-lg text-gray-600">
               Profesyonel ekibimizle sizlere en iyi hizmeti sunuyoruz
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
             {services.map((service, index) => (
-              <div
+              <motion.div
                 key={index}
                 className="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 border border-gray-100"
+                variants={fadeInUp}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
               >
-                <div className="text-blue-600 mb-4">{service.icon}</div>
+                <motion.div 
+                  className="text-blue-600 mb-4"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {service.icon}
+                </motion.div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4 border-b border-gray-200 pb-2">{service.title}</h3>
                 <p className="text-gray-800 font-medium">{service.description}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
