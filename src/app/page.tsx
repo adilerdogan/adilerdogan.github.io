@@ -148,7 +148,7 @@ export default function Home() {
               index === currentSlide ? 'opacity-100' : 'opacity-0'
             }`}
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 to-gray-800/90 z-10" />
+            <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 via-gray-900/50 to-transparent z-10" />
             <Image
               src={slide.image}
               alt={slide.title}
@@ -156,37 +156,69 @@ export default function Home() {
               className="object-cover"
               priority={index === 0}
             />
-            <div className="relative z-20 h-full flex items-center justify-center text-center px-4">
-              <div className="max-w-3xl">
-                <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 transform transition-all duration-1000 translate-y-0">
-                  {slide.title}
-                </h1>
-                <p className="text-xl md:text-2xl text-white mb-8 transform transition-all duration-1000 translate-y-0">
-                  {slide.description}
-                </p>
-                <button
-                  onClick={() => document.getElementById('iletisim')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="bg-white text-gray-900 px-8 py-3 rounded-full font-medium hover:bg-gray-100 transition duration-300"
-                >
-                  Randevu Al
-                </button>
+            <div className="relative z-20 h-full flex items-center">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                <div className="max-w-2xl">
+                  <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 transform transition-all duration-1000 translate-y-0">
+                    {slide.title}
+                  </h1>
+                  <p className="text-xl md:text-2xl text-gray-200 mb-8 transform transition-all duration-1000 translate-y-0">
+                    {slide.description}
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <button
+                      onClick={() => document.getElementById('iletisim')?.scrollIntoView({ behavior: 'smooth' })}
+                      className="px-8 py-4 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 transition duration-300 shadow-lg hover:shadow-xl"
+                    >
+                      Randevu Al
+                    </button>
+                    <button
+                      onClick={() => document.getElementById('hizmetler')?.scrollIntoView({ behavior: 'smooth' })}
+                      className="px-8 py-4 rounded-lg bg-white/10 text-white font-medium hover:bg-white/20 transition duration-300 backdrop-blur-sm"
+                    >
+                      Hizmetlerimiz
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         ))}
 
         {/* Slider Navigation Dots */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2">
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex space-x-3">
           {slides.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentSlide ? 'bg-white scale-125' : 'bg-white/50'
+                index === currentSlide 
+                  ? 'bg-white scale-125' 
+                  : 'bg-white/50 hover:bg-white/75'
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-8 z-20 hidden md:block">
+          <div className="flex flex-col items-center space-y-2">
+            <span className="text-white text-sm font-medium">Aşağı Kaydır</span>
+            <svg 
+              className="w-6 h-6 text-white animate-bounce" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={2} 
+                d="M19 14l-7 7m0 0l-7-7m7 7V3" 
+              />
+            </svg>
+          </div>
         </div>
       </section>
 
