@@ -9,17 +9,17 @@ export default function Home() {
     {
       title: "Modern Erkek Kuaförü",
       description: "Profesyonel ekibimizle sizlere en iyi hizmeti sunuyoruz",
-      image: "/sources/gallery/kuafor1.jpeg"
+      image: "/src/sources/gallery/2.png"
     },
     {
       title: "Profesyonel Saç Kesimi",
       description: "Uzman ekibimizle modern ve şık kesimler",
-      image: "/sources/gallery/kuafor2.jpeg"
+      image: "/src/sources/gallery/3.png"
     },
     {
       title: "Sakal Tıraşı ve Bakım",
       description: "Modern sakal tıraşı ve şekillendirme hizmetleri",
-      image: "/sources/gallery/kuafor3.jpeg"
+      image: "/src/sources/gallery/4.png"
     }
   ];
 
@@ -108,45 +108,33 @@ export default function Home() {
 
   const images = [
     {
-      src: '/sources/gallery/kuafor1.jpeg',
-      alt: 'Kuaför Salonu Görünümü 1',
+      src: '/src/sources/gallery/2.png',
+      alt: 'Gözde Erkek Kuaförü - Salon Görünümü 1'
     },
     {
-      src: '/sources/gallery/kuafor2.jpeg',
-      alt: 'Kuaför Salonu Görünümü 2',
+      src: '/src/sources/gallery/3.png',
+      alt: 'Gözde Erkek Kuaförü - Salon Görünümü 2'
     },
     {
-      src: '/sources/gallery/kuafor3.jpeg',
-      alt: 'Kuaför Salonu Görünümü 3',
+      src: '/src/sources/gallery/4.png',
+      alt: 'Gözde Erkek Kuaförü - Salon Görünümü 3'
     },
     {
-      src: '/sources/gallery/kuafor4.jpeg',
-      alt: 'Kuaför Salonu Görünümü 4',
+      src: '/src/sources/gallery/5.png',
+      alt: 'Gözde Erkek Kuaförü - Salon Görünümü 4'
     },
     {
-      src: '/sources/gallery/kuafor5.jpeg',
-      alt: 'Kuaför Salonu Görünümü 5',
+      src: '/src/sources/gallery/6.png',
+      alt: 'Gözde Erkek Kuaförü - Salon Görünümü 5'
     },
     {
-      src: '/sources/gallery/kuafor6.jpeg',
-      alt: 'Kuaför Salonu Görünümü 6',
+      src: '/src/sources/gallery/7.png',
+      alt: 'Gözde Erkek Kuaförü - Salon Görünümü 6'
     },
     {
-      src: '/sources/gallery/kuafor7.jpeg',
-      alt: 'Kuaför Salonu Görünümü 7',
-    },
-    {
-      src: '/sources/gallery/kuafor8.jpeg',
-      alt: 'Kuaför Salonu Görünümü 8',
-    },
-    {
-      src: '/sources/gallery/kuafor9.jpeg',
-      alt: 'Kuaför Salonu Görünümü 9',
-    },
-    {
-      src: '/sources/gallery/kuafor10.jpeg',
-      alt: 'Kuaför Salonu Görünümü 10',
-    },
+      src: '/src/sources/gallery/8.png',
+      alt: 'Gözde Erkek Kuaförü - Salon Görünümü 7'
+    }
   ];
 
   return (
@@ -217,35 +205,35 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Feature 1 */}
             <div className="bg-white p-6 rounded-lg shadow-lg">
-              <div className="text-gray-900 mb-4">
+              <div className="text-blue-600 mb-4">
                 <svg className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Uzman Ekip</h3>
-              <p className="text-gray-600">Deneyimli ve profesyonel kuaförlerimizle hizmetinizdeyiz.</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Uzman Ekip</h3>
+              <p className="text-gray-700">Deneyimli ve profesyonel kuaförlerimizle hizmetinizdeyiz.</p>
             </div>
 
             {/* Feature 2 */}
             <div className="bg-white p-6 rounded-lg shadow-lg">
-              <div className="text-gray-900 mb-4">
+              <div className="text-blue-600 mb-4">
                 <svg className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Hızlı Hizmet</h3>
-              <p className="text-gray-600">Zamanınızı değerli kılıyor, hızlı ve kaliteli hizmet sunuyoruz.</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Hızlı Hizmet</h3>
+              <p className="text-gray-700">Zamanınızı değerli kılıyor, hızlı ve kaliteli hizmet sunuyoruz.</p>
             </div>
 
             {/* Feature 3 */}
             <div className="bg-white p-6 rounded-lg shadow-lg">
-              <div className="text-gray-900 mb-4">
+              <div className="text-blue-600 mb-4">
                 <svg className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Modern Teknikler</h3>
-              <p className="text-gray-600">En son trendleri ve modern teknikleri uyguluyoruz.</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Modern Teknikler</h3>
+              <p className="text-gray-700">En son trendleri ve modern teknikleri uyguluyoruz.</p>
             </div>
           </div>
         </div>
@@ -267,11 +255,11 @@ export default function Home() {
             {services.map((service, index) => (
               <div
                 key={index}
-                className="bg-gray-50 rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300"
+                className="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 border border-gray-100"
               >
                 <div className="text-blue-600 mb-4">{service.icon}</div>
-                <h3 className="text-xl font-semibold mb-4">{service.title}</h3>
-                <p className="text-gray-600">{service.description}</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-4 border-b border-gray-200 pb-2">{service.title}</h3>
+                <p className="text-gray-800 font-medium">{service.description}</p>
               </div>
             ))}
           </div>
@@ -292,23 +280,23 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div>
-              <h3 className="text-2xl font-semibold mb-4">Vizyonumuz</h3>
-              <p className="text-gray-600 mb-6">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Vizyonumuz</h3>
+              <p className="text-gray-700 mb-6">
                 Akhisar'ın en iyi erkek kuaförü olarak, müşterilerimize en kaliteli hizmeti sunmak ve onların beklentilerini aşmak için çalışıyoruz.
               </p>
-              <h3 className="text-2xl font-semibold mb-4">Misyonumuz</h3>
-              <p className="text-gray-600">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Misyonumuz</h3>
+              <p className="text-gray-700">
                 Profesyonel ekibimiz ve modern tekniklerimizle müşterilerimize en iyi hizmeti sunarak, onların güvenini kazanmak ve memnuniyetlerini sağlamak.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-white p-6 rounded-lg shadow-lg">
-                <h4 className="text-xl font-semibold mb-2">Adil Erdoğan</h4>
-                <p className="text-gray-600">Uzman Kuaför</p>
+                <h4 className="text-xl font-bold text-gray-900 mb-2">Adil Erdoğan</h4>
+                <p className="text-gray-700">Uzman Kuaför</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-lg">
-                <h4 className="text-xl font-semibold mb-2">Baki Erdoğan</h4>
-                <p className="text-gray-600">Uzman Kuaför</p>
+                <h4 className="text-xl font-bold text-gray-900 mb-2">Baki Erdoğan</h4>
+                <p className="text-gray-700">Uzman Kuaför</p>
               </div>
             </div>
           </div>
