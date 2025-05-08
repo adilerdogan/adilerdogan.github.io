@@ -299,7 +299,7 @@ export default function Home() {
 
           {/* Slider Navigation Dots */}
           <motion.div 
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex space-x-3"
+            className="absolute bottom-24 left-1/2 transform -translate-x-1/2 z-20 flex space-x-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 1 }}
@@ -308,9 +308,9 @@ export default function Home() {
               <motion.button
                 key={index}
                 onClick={() => setCurrentSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                className={`w-4 h-4 rounded-full transition-all duration-300 ${
                   index === currentSlide 
-                    ? 'bg-white scale-125' 
+                    ? 'bg-white scale-125 shadow-lg' 
                     : 'bg-white/50 hover:bg-white/75'
                 }`}
                 whileHover={{ scale: 1.2 }}
@@ -322,15 +322,17 @@ export default function Home() {
 
           {/* Scroll Indicator */}
           <motion.div 
-            className="absolute bottom-8 left-8 z-20 hidden md:block"
+            className="absolute bottom-24 left-12 z-20 hidden md:block"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 1.2 }}
           >
-            <div className="flex flex-col items-center space-y-2">
-              <span className="text-white text-sm font-medium">Aşağı Kaydır</span>
+            <div className="flex flex-col items-center space-y-3">
+              <span className="text-white text-sm font-medium bg-black/50 px-4 py-2 rounded-full backdrop-blur-sm shadow-lg">
+                Aşağı Kaydır
+              </span>
               <motion.svg 
-                className="w-6 h-6 text-white" 
+                className="w-8 h-8 text-white bg-black/50 p-2 rounded-full backdrop-blur-sm shadow-lg" 
                 fill="none" 
                 stroke="currentColor" 
                 viewBox="0 0 24 24"
