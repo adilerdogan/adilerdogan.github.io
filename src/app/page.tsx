@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Head from 'next/head';
+import GoogleReviews from './components/GoogleReviews';
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -241,7 +242,7 @@ export default function Home() {
               className={`absolute inset-0`}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 via-gray-900/50 to-transparent z-10" />
-              <Image
+        <Image
                 src={slide.image}
                 alt={`Akhisar Erkek Kuaförü - ${slide.title}`}
                 fill
@@ -642,76 +643,11 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Image Modal */}
-        <AnimatePresence>
-          {selectedImage && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
-              onClick={() => setSelectedImage(null)}
-            >
-              <motion.div
-                initial={{ scale: 0.9 }}
-                animate={{ scale: 1 }}
-                exit={{ scale: 0.9 }}
-                className="relative max-w-7xl max-h-[90vh] w-full"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <div className="relative w-full h-[90vh]">
-                  <Image
-                    src={selectedImage}
-                    alt="Büyük görüntü"
-                    fill
-                    className="object-contain"
-                    quality={100}
-                  />
-                  <button
-                    className="absolute top-2 right-2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all duration-300 hover:scale-110 z-10"
-                    onClick={() => setSelectedImage(null)}
-                  >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
-                  
-                  {/* Navigation Buttons */}
-                  <button
-                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 transition-all duration-300 hover:scale-110 z-10"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handlePrevImage();
-                    }}
-                  >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                    </svg>
-                  </button>
-                  <button
-                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 transition-all duration-300 hover:scale-110 z-10"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleNextImage();
-                    }}
-                  >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </button>
-
-                  {/* Image Counter */}
-                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 text-white px-4 py-2 rounded-full text-sm">
-                    {currentImageIndex + 1} / {images.length}
-                  </div>
-                </div>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* Google Reviews Section */}
+        <GoogleReviews />
 
         {/* İletişim Section */}
-        <section id="iletisim" className="py-20 bg-gray-50 scroll-mt-20">
+        <section id="iletisim" className="py-20 bg-white scroll-mt-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -759,8 +695,8 @@ export default function Home() {
                         className="text-blue-600 hover:text-blue-700 font-medium transition-colors duration-300"
                       >
                         0(543) 556 66 20
-                      </a>
-                    </div>
+          </a>
+        </div>
                   </div>
 
                   <div className="flex items-start space-x-4 group">
@@ -773,8 +709,8 @@ export default function Home() {
                       <h4 className="text-lg font-semibold text-gray-900 mb-3">WhatsApp Randevu</h4>
                       <a
                         href="https://wa.me/905435566620"
-                        target="_blank"
-                        rel="noopener noreferrer"
+          target="_blank"
+          rel="noopener noreferrer"
                         className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-green-600 hover:bg-green-700 transition-colors duration-300 shadow-sm hover:shadow-md"
                       >
                         <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
@@ -808,8 +744,8 @@ export default function Home() {
                   <div className="flex items-center justify-center space-x-4 pt-4">
                     <a
                       href="https://maps.google.com/?q=38.916409,27.834227"
-                      target="_blank"
-                      rel="noopener noreferrer"
+          target="_blank"
+          rel="noopener noreferrer"
                       className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-300 shadow-sm hover:shadow-md"
                     >
                       <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -817,11 +753,11 @@ export default function Home() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
                       Google Maps'te Aç
-                    </a>
-                    <a
+        </a>
+        <a
                       href="https://www.google.com/maps/dir/?api=1&destination=38.916409,27.834227"
-                      target="_blank"
-                      rel="noopener noreferrer"
+          target="_blank"
+          rel="noopener noreferrer"
                       className="inline-flex items-center px-6 py-3 border border-gray-300 text-base font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition-colors duration-300 shadow-sm hover:shadow-md"
                     >
                       <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
