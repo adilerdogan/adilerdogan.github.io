@@ -29,13 +29,44 @@ export default function Home() {
     }
   ];
 
+  const images = [
+    {
+      src: '/sources/gallery/2.png',
+      alt: 'Gözde Erkek Kuaförü - Dış Görünümü 1'
+    },
+    {
+      src: '/sources/gallery/3.png',
+      alt: 'Gözde Erkek Kuaförü - Dış Görünümü 2'
+    },
+    {
+      src: '/sources/gallery/4.png',
+      alt: 'Gözde Erkek Kuaförü - Dış Görünümü 3'
+    },
+    {
+      src: '/sources/gallery/5.png',
+      alt: 'Gözde Erkek Kuaförü - Dış Görünümü 4'
+    },
+    {
+      src: '/sources/gallery/6.png',
+      alt: 'Gözde Erkek Kuaförü - Salon Görünümü 5'
+    },
+    {
+      src: '/sources/gallery/7.png',
+      alt: 'Gözde Erkek Kuaförü - Salon Görünümü 6'
+    },
+    {
+      src: '/sources/gallery/8.png',
+      alt: 'Gözde Erkek Kuaförü - Salon Görünümü 7'
+    }
+  ];
+
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 5000); // Change slide every 5 seconds
 
     return () => clearInterval(timer);
-  }, []);
+  }, [slides.length]);
 
   useEffect(() => {
     // Simulate loading time
@@ -63,7 +94,7 @@ export default function Home() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedImage, currentImageIndex]);
+  }, [selectedImage, currentImageIndex, images]);
 
   const services = [
     {
@@ -138,37 +169,6 @@ export default function Home() {
         </svg>
       ),
     },
-  ];
-
-  const images = [
-    {
-      src: '/sources/gallery/2.png',
-      alt: 'Gözde Erkek Kuaförü - Dış Görünümü 1'
-    },
-    {
-      src: '/sources/gallery/3.png',
-      alt: 'Gözde Erkek Kuaförü - Dış Görünümü 2'
-    },
-    {
-      src: '/sources/gallery/4.png',
-      alt: 'Gözde Erkek Kuaförü - Dış Görünümü 3'
-    },
-    {
-      src: '/sources/gallery/5.png',
-      alt: 'Gözde Erkek Kuaförü - Dış Görünümü 4'
-    },
-    {
-      src: '/sources/gallery/6.png',
-      alt: 'Gözde Erkek Kuaförü - Salon Görünümü 5'
-    },
-    {
-      src: '/sources/gallery/7.png',
-      alt: 'Gözde Erkek Kuaförü - Salon Görünümü 6'
-    },
-    {
-      src: '/sources/gallery/8.png',
-      alt: 'Gözde Erkek Kuaförü - Salon Görünümü 7'
-    }
   ];
 
   const fadeInUp = {

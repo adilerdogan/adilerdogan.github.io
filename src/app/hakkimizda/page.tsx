@@ -1,22 +1,4 @@
 export default function Hakkimizda() {
-  const teamMembers = [
-    {
-      name: "Ahmet Yılmaz",
-      role: "CEO & Kurucu",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    },
-    {
-      name: "Ayşe Demir",
-      role: "Tasarım Direktörü",
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    },
-    {
-      name: "Mehmet Kaya",
-      role: "Teknik Direktör",
-      image: "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    },
-  ];
-
   return (
     <div className="min-h-screen bg-gray-50 py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -33,7 +15,7 @@ export default function Hakkimizda() {
         {/* Main Content */}
         <div className="bg-white rounded-lg shadow-lg p-8 mb-12">
           <p className="text-lg text-gray-700 mb-6">
-            Akhisar'ın merkezinde, yılların deneyimiyle hizmet veren Gözde Erkek Kuaförü, 
+            Akhisar&apos;ın merkezinde, yılların deneyimiyle hizmet veren Gözde Erkek Kuaförü, 
             Adil ve Baki Erdoğan kardeşlerin titizliği ve güler yüzüyle sizleri bekliyor! 
             Saç kesimi, sakal tıraşı, cilt bakımı ve modern stil uygulamalarıyla hijyenik 
             bir ortamda kaliteli bir hizmet sunuyoruz.
@@ -107,7 +89,7 @@ export default function Hakkimizda() {
           <p className="text-lg text-gray-700">
             Randevuya gerek kalmadan hemen uğrayabilir, stilinizi profesyonellere emanet edebilirsiniz. 
             Kaliteli hizmet, uygun fiyat ve müşteri memnuniyetiyle fark yaratıyoruz. 
-            Gözde Erkek Kuaförü – Akhisar'da stilin adresi!
+            Gözde Erkek Kuaförü – Akhisar&apos;da stilin adresi!
           </p>
         </div>
       </div>
