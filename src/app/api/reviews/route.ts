@@ -1,3 +1,8 @@
+// Temporarily disabled due to static export issues
+/*
+export const dynamic = 'force-dynamic';
+export const revalidate = 3600; // Revalidate every hour
+
 import { NextResponse } from 'next/server';
 
 interface Review {
@@ -11,75 +16,60 @@ interface Review {
 
 async function translateText(text: string): Promise<string> {
   try {
-    const response = await fetch(
-      `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=tr&dt=t&q=${encodeURIComponent(text)}`
-    );
-    
-    if (!response.ok) {
-      throw new Error('Translation failed');
-    }
-    
+    const response = await fetch('https://translation.googleapis.com/language/translate/v2', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        q: text,
+        source: 'en',
+        target: 'tr',
+        key: process.env.GOOGLE_TRANSLATE_API_KEY,
+      }),
+    });
+
     const data = await response.json();
-    return data[0][0][0];
+    return data.data.translations[0].translatedText;
   } catch (error) {
     console.error('Translation error:', error);
-    return text; // Hata durumunda orijinal metni döndür
+    return text;
   }
 }
 
 export async function GET() {
   try {
-    const placeId = 'ChIJb9-mpgHSuRQR0UO0SxkWLbg';
-    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY;
-
-    if (!apiKey) {
-      return NextResponse.json(
-        { error: 'API anahtarı bulunamadı' },
-        { status: 500 }
-      );
-    }
-
     const response = await fetch(
-      `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=reviews&maxresults=20&key=${apiKey}`
+      `https://maps.googleapis.com/maps/api/place/details/json?place_id=YOUR_PLACE_ID&fields=reviews&key=${process.env.GOOGLE_PLACES_API_KEY}`
     );
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
 
     const data = await response.json();
 
-    if (data.error_message) {
-      return NextResponse.json(
-        { error: data.error_message },
-        { status: 500 }
-      );
+    if (!data.result || !data.result.reviews) {
+      throw new Error('No reviews found');
     }
 
-    // Yorumları çevir
-    if (data.result && data.result.reviews) {
-      const translatedReviews = await Promise.all(
-        data.result.reviews.map(async (review: Review) => ({
-          ...review,
-          text: await translateText(review.text)
-        }))
-      );
-      
-      return NextResponse.json({
-        ...data,
-        result: {
-          ...data.result,
-          reviews: translatedReviews
-        }
-      });
-    }
+    const reviews: Review[] = await Promise.all(
+      data.result.reviews.map(async (review: any) => ({
+        text: await translateText(review.text),
+        author_name: review.author_name,
+        rating: review.rating,
+        time: review.time,
+        profile_photo_url: review.profile_photo_url,
+        relative_time_description: review.relative_time_description,
+      }))
+    );
 
-    return NextResponse.json(data);
+    return NextResponse.json({ result: { reviews } });
   } catch (error) {
     console.error('Error fetching reviews:', error);
     return NextResponse.json(
-      { error: 'Yorumlar yüklenirken bir hata oluştu' },
+      { error: 'Failed to fetch reviews' },
       { status: 500 }
     );
   }
-} 
+}
+*/
+
+// Empty export to keep the file
+export {}; 
