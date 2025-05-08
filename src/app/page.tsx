@@ -1,7 +1,36 @@
 'use client';
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 export default function Home() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const slides = [
+    {
+      title: "Modern Erkek Kuaförü",
+      description: "Profesyonel ekibimizle sizlere en iyi hizmeti sunuyoruz",
+      image: "/sources/gallery/kuafor1.jpeg"
+    },
+    {
+      title: "Profesyonel Saç Kesimi",
+      description: "Uzman ekibimizle modern ve şık kesimler",
+      image: "/sources/gallery/kuafor2.jpeg"
+    },
+    {
+      title: "Sakal Tıraşı ve Bakım",
+      description: "Modern sakal tıraşı ve şekillendirme hizmetleri",
+      image: "/sources/gallery/kuafor3.jpeg"
+    }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(timer);
+  }, []);
+
   const services = [
     {
       title: "Saç Kesimi",
@@ -122,23 +151,54 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section id="anasayfa" className="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Modern Erkek Kuaförü
-            </h1>
-            <p className="text-xl md:text-2xl mb-8">
-              Profesyonel ekibimizle sizlere en iyi hizmeti sunuyoruz
-            </p>
-            <button
-              onClick={() => document.getElementById('iletisim')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-white text-gray-900 px-8 py-3 rounded-full font-medium hover:bg-gray-100 transition duration-300"
-            >
-              Randevu Al
-            </button>
+      {/* Hero Section with Slider */}
+      <section id="anasayfa" className="relative h-screen">
+        {slides.map((slide, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-1000 ${
+              index === currentSlide ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 to-gray-800/90 z-10" />
+            <Image
+              src={slide.image}
+              alt={slide.title}
+              fill
+              className="object-cover"
+              priority={index === 0}
+            />
+            <div className="relative z-20 h-full flex items-center justify-center text-center px-4">
+              <div className="max-w-3xl">
+                <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 transform transition-all duration-1000 translate-y-0">
+                  {slide.title}
+                </h1>
+                <p className="text-xl md:text-2xl text-white mb-8 transform transition-all duration-1000 translate-y-0">
+                  {slide.description}
+                </p>
+                <button
+                  onClick={() => document.getElementById('iletisim')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="bg-white text-gray-900 px-8 py-3 rounded-full font-medium hover:bg-gray-100 transition duration-300"
+                >
+                  Randevu Al
+                </button>
+              </div>
+            </div>
           </div>
+        ))}
+
+        {/* Slider Navigation Dots */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                index === currentSlide ? 'bg-white scale-125' : 'bg-white/50'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
         </div>
       </section>
 
