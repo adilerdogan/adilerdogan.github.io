@@ -223,7 +223,7 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
@@ -272,7 +272,7 @@ export default function Home() {
       </section>
 
       {/* Hizmetler Section */}
-      <section id="hizmetler" className="py-20 bg-white">
+      <section id="hizmetler" className="py-20 bg-white scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
@@ -299,7 +299,7 @@ export default function Home() {
       </section>
 
       {/* Hakkımızda Section */}
-      <section id="hakkimizda" className="py-20 bg-gray-50">
+      <section id="hakkimizda" className="py-20 bg-gray-50 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
@@ -336,7 +336,7 @@ export default function Home() {
       </section>
 
       {/* Galeri Section */}
-      <section id="galeri" className="py-20 bg-white">
+      <section id="galeri" className="py-20 bg-white scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -375,7 +375,7 @@ export default function Home() {
       </section>
 
       {/* İletişim Section */}
-      <section id="iletisim" className="py-20 bg-gray-50">
+      <section id="iletisim" className="py-20 bg-gray-50 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
