@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +19,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <a href="/" className="flex-shrink-0 flex items-center">
+            <Link href="/" className="flex-shrink-0 flex items-center">
               <Image
                 src="/sources/logo.png"
                 alt="Akhisar Gözde Erkek Kuaförü Logo"
@@ -27,7 +28,7 @@ export default function Navbar() {
                 className="h-10 w-auto"
               />
               <span className="ml-2 text-xl font-bold text-gray-900">Akhisar Gözde Erkek Kuaförü</span>
-            </a>
+            </Link>
           </div>
 
           {/* Desktop Menu */}

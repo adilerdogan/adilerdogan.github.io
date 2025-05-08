@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import Image from 'next/image';
 
 export default function Galeri() {
   const images = [
@@ -66,10 +66,11 @@ export default function Galeri() {
               className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
             >
               <div className="relative h-64">
-                <img
+                <Image
                   src={image.src}
                   alt={image.alt}
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+                  fill
+                  className="object-cover transform group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
               <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity duration-300 flex items-center justify-center">

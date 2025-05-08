@@ -1,5 +1,14 @@
 import { NextResponse } from 'next/server';
 
+interface Review {
+  text: string;
+  author_name: string;
+  rating: number;
+  time: number;
+  profile_photo_url: string;
+  relative_time_description: string;
+}
+
 async function translateText(text: string): Promise<string> {
   try {
     const response = await fetch(
@@ -50,7 +59,7 @@ export async function GET() {
     // Yorumları çevir
     if (data.result && data.result.reviews) {
       const translatedReviews = await Promise.all(
-        data.result.reviews.map(async (review: any) => ({
+        data.result.reviews.map(async (review: Review) => ({
           ...review,
           text: await translateText(review.text)
         }))
