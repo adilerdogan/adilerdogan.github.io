@@ -190,18 +190,6 @@ export default function Home() {
     setCurrentImageIndex(index);
   };
 
-  const handlePrevImage = () => {
-    const newIndex = (currentImageIndex - 1 + images.length) % images.length;
-    setCurrentImageIndex(newIndex);
-    setSelectedImage(images[newIndex].src);
-  };
-
-  const handleNextImage = () => {
-    const newIndex = (currentImageIndex + 1) % images.length;
-    setCurrentImageIndex(newIndex);
-    setSelectedImage(images[newIndex].src);
-  };
-
   if (isLoading) {
     return (
       <div className="fixed inset-0 flex items-center justify-center bg-white z-50">
@@ -485,10 +473,10 @@ export default function Home() {
                 <div className="bg-white p-8 rounded-lg shadow-lg">
                   <h3 className="text-2xl font-bold text-gray-900 mb-6 pb-4 border-b border-gray-200">Akhisar Gözde Erkek Kuaförü</h3>
                   <p className="text-gray-700 leading-relaxed mb-6">
-                    Akhisar'ın merkezinde, yılların deneyimiyle hizmet veren Gözde Erkek Kuaförü, Adil ve Baki Erdoğan kardeşlerin titizliği ve güler yüzüyle sizleri bekliyor! Saç kesimi, sakal tıraşı, cilt bakımı ve modern stil uygulamalarıyla hijyenik bir ortamda kaliteli bir hizmet sunuyoruz.
+                    Akhisar&apos;ın merkezinde, yılların deneyimiyle hizmet veren Gözde Erkek Kuaförü, Adil ve Baki Erdoğan kardeşlerin titizliği ve güler yüzüyle sizleri bekliyor! Saç kesimi, sakal tıraşı, cilt bakımı ve modern stil uygulamalarıyla hijyenik bir ortamda kaliteli bir hizmet sunuyoruz.
                   </p>
                   <p className="text-gray-700 leading-relaxed">
-                    Randevuya gerek kalmadan hemen uğrayabilir, stilinizi profesyonellere emanet edebilirsiniz. Kaliteli hizmet, uygun fiyat ve müşteri memnuniyetiyle fark yaratıyoruz. Gözde Erkek Kuaförü – Akhisar'da stilin adresi!
+                    Randevuya gerek kalmadan hemen uğrayabilir, stilinizi profesyonellere emanet edebilirsiniz. Kaliteli hizmet, uygun fiyat ve müşteri memnuniyetiyle fark yaratıyoruz. Gözde Erkek Kuaförü – Akhisar&apos;da stilin adresi!
                   </p>
                 </div>
 
@@ -559,7 +547,7 @@ export default function Home() {
                         Vizyonumuz
                       </h4>
                       <p className="text-gray-700 leading-relaxed">
-                        Akhisar'ın en iyi erkek kuaförü olarak, müşterilerimize en kaliteli hizmeti sunmak ve onların beklentilerini aşmak için çalışıyoruz.
+                        Akhisar&apos;ın en iyi erkek kuaförü olarak, müşterilerimize en kaliteli hizmeti sunmak ve onların beklentilerini aşmak için çalışıyoruz.
                       </p>
                     </div>
                     <div>
@@ -654,7 +642,7 @@ export default function Home() {
                 Akhisar Erkek Kuaförü İletişim
               </h2>
               <p className="text-lg text-gray-600">
-                Akhisar'ın merkezinde, Hürriyet Mahallesi'nde hizmetinizdeyiz
+                Akhisar&apos;ın merkezinde, Hürriyet Mahallesi&apos;nde hizmetinizdeyiz
               </p>
             </div>
 
