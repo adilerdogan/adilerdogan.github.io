@@ -110,19 +110,19 @@ export default function Home() {
   const images = [
     {
       src: '/sources/gallery/2.png',
-      alt: 'Gözde Erkek Kuaförü - Salon Görünümü 1'
+      alt: 'Gözde Erkek Kuaförü - Dış Görünümü 1'
     },
     {
       src: '/sources/gallery/3.png',
-      alt: 'Gözde Erkek Kuaförü - Salon Görünümü 2'
+      alt: 'Gözde Erkek Kuaförü - Dış Görünümü 2'
     },
     {
       src: '/sources/gallery/4.png',
-      alt: 'Gözde Erkek Kuaförü - Salon Görünümü 3'
+      alt: 'Gözde Erkek Kuaförü - Dış Görünümü 3'
     },
     {
       src: '/sources/gallery/5.png',
-      alt: 'Gözde Erkek Kuaförü - Salon Görünümü 4'
+      alt: 'Gözde Erkek Kuaförü - Dış Görünümü 4'
     },
     {
       src: '/sources/gallery/6.png',
@@ -504,39 +504,62 @@ export default function Home() {
       {/* Galeri Section */}
       <section id="galeri" className="py-20 bg-white scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <motion.div 
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Galeri
             </h2>
             <p className="text-lg text-gray-600">
               Modern ve şık salonumuzdan kareler
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
             {images.map((image, index) => (
-              <div
+              <motion.div
                 key={index}
-                className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+                className={`relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 ${
+                  index === 6 ? 'md:col-span-2 lg:col-span-1 lg:col-start-2' : ''
+                }`}
+                variants={fadeInUp}
+                whileHover={{ y: -5 }}
               >
-                <div className="relative h-64">
+                <div className="relative aspect-[4/3] w-full">
                   <Image
                     src={image.src}
                     alt={image.alt}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover transform group-hover:scale-105 transition-transform duration-300"
+                    className="object-cover transform group-hover:scale-105 transition-transform duration-500"
                     priority={index < 3}
+                    quality={90}
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="text-center p-4">
+                      <h3 className="text-white text-lg font-semibold mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                        {image.alt}
+                      </h3>
+                      <p className="text-white/90 text-sm transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-100">
+                        Gözde Erkek Kuaförü
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity duration-300 flex items-center justify-center">
-                  <p className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-lg font-medium">
-                    {image.alt}
-                  </p>
-                </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
