@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const slides = [
     {
@@ -529,11 +530,12 @@ export default function Home() {
             {images.map((image, index) => (
               <motion.div
                 key={index}
-                className={`relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 ${
+                className={`relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer ${
                   index === 6 ? 'md:col-span-2 lg:col-span-1 lg:col-start-2' : ''
                 }`}
                 variants={fadeInUp}
                 whileHover={{ y: -5 }}
+                onClick={() => setSelectedImage(image.src)}
               >
                 <div className="relative aspect-[4/3] w-full">
                   <Image
@@ -562,6 +564,43 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      {/* Image Modal */}
+      {selectedImage && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
+          onClick={() => setSelectedImage(null)}
+        >
+          <motion.div
+            initial={{ scale: 0.9 }}
+            animate={{ scale: 1 }}
+            exit={{ scale: 0.9 }}
+            className="relative max-w-7xl max-h-[90vh] w-full"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="relative w-full h-[90vh]">
+              <Image
+                src={selectedImage}
+                alt="Büyük görüntü"
+                fill
+                className="object-contain"
+                quality={100}
+              />
+              <button
+                className="absolute top-2 right-2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all duration-300 hover:scale-110 z-10"
+                onClick={() => setSelectedImage(null)}
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
 
       {/* İletişim Section */}
       <section id="iletisim" className="py-20 bg-gray-50 scroll-mt-20">
