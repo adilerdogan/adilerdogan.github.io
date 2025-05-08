@@ -9,17 +9,17 @@ export default function Home() {
     {
       title: "Modern Erkek Kuaförü",
       description: "Profesyonel ekibimizle sizlere en iyi hizmeti sunuyoruz",
-      image: "/src/sources/gallery/2.png"
+      image: "/sources/gallery/5.png"
     },
     {
       title: "Profesyonel Saç Kesimi",
       description: "Uzman ekibimizle modern ve şık kesimler",
-      image: "/src/sources/gallery/3.png"
+      image: "/sources/gallery/6.png"
     },
     {
       title: "Sakal Tıraşı ve Bakım",
       description: "Modern sakal tıraşı ve şekillendirme hizmetleri",
-      image: "/src/sources/gallery/4.png"
+      image: "/sources/gallery/7.png"
     }
   ];
 
@@ -108,31 +108,31 @@ export default function Home() {
 
   const images = [
     {
-      src: '/src/sources/gallery/2.png',
+      src: '/sources/gallery/2.png',
       alt: 'Gözde Erkek Kuaförü - Salon Görünümü 1'
     },
     {
-      src: '/src/sources/gallery/3.png',
+      src: '/sources/gallery/3.png',
       alt: 'Gözde Erkek Kuaförü - Salon Görünümü 2'
     },
     {
-      src: '/src/sources/gallery/4.png',
+      src: '/sources/gallery/4.png',
       alt: 'Gözde Erkek Kuaförü - Salon Görünümü 3'
     },
     {
-      src: '/src/sources/gallery/5.png',
+      src: '/sources/gallery/5.png',
       alt: 'Gözde Erkek Kuaförü - Salon Görünümü 4'
     },
     {
-      src: '/src/sources/gallery/6.png',
+      src: '/sources/gallery/6.png',
       alt: 'Gözde Erkek Kuaförü - Salon Görünümü 5'
     },
     {
-      src: '/src/sources/gallery/7.png',
+      src: '/sources/gallery/7.png',
       alt: 'Gözde Erkek Kuaförü - Salon Görünümü 6'
     },
     {
-      src: '/src/sources/gallery/8.png',
+      src: '/sources/gallery/8.png',
       alt: 'Gözde Erkek Kuaförü - Salon Görünümü 7'
     }
   ];
