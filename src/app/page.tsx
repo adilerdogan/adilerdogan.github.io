@@ -208,11 +208,11 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Gözde Erkek Kuaförü - Akhisar'ın En İyi Erkek Kuaförü</title>
-        <meta name="description" content="Akhisar'ın merkezinde, yılların deneyimiyle hizmet veren Gözde Erkek Kuaförü. Profesyonel saç kesimi, sakal tıraşı ve bakım hizmetleri." />
+        <title>Gözde Erkek Kuaförü - Akhisar&apos;ın En İyi Erkek Kuaförü</title>
+        <meta name="description" content="Akhisar&apos;ın merkezinde, yılların deneyimiyle hizmet veren Gözde Erkek Kuaförü. Profesyonel saç kesimi, sakal tıraşı ve bakım hizmetleri." />
         <meta name="keywords" content="Akhisar berber, Akhisar erkek kuaförü, Gözde Erkek Kuaförü, saç kesimi, sakal tıraşı" />
-        <meta property="og:title" content="Gözde Erkek Kuaförü - Akhisar'ın En İyi Erkek Kuaförü" />
-        <meta property="og:description" content="Akhisar'ın merkezinde, yılların deneyimiyle hizmet veren Gözde Erkek Kuaförü. Profesyonel saç kesimi, sakal tıraşı ve bakım hizmetleri." />
+        <meta property="og:title" content="Gözde Erkek Kuaförü - Akhisar&apos;ın En İyi Erkek Kuaförü" />
+        <meta property="og:description" content="Akhisar&apos;ın merkezinde, yılların deneyimiyle hizmet veren Gözde Erkek Kuaförü. Profesyonel saç kesimi, sakal tıraşı ve bakım hizmetleri." />
         <meta property="og:image" content="/sources/gallery/2.png" />
         <meta property="og:url" content="https://adilerdogan.github.io" />
         <link rel="canonical" href="https://adilerdogan.github.io" />
@@ -461,10 +461,10 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-                Akhisar'ın En İyi Erkek Kuaförü
+                Akhisar&apos;ın En İyi Erkek Kuaförü
               </h2>
               <p className="mt-4 text-lg text-gray-600">
-                Akhisar'ın merkezinde, yılların deneyimiyle hizmetinizdeyiz
+                Akhisar&apos;ın merkezinde, yılların deneyimiyle hizmetinizdeyiz
               </p>
             </div>
 
