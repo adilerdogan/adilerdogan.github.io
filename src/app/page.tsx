@@ -1,7 +1,7 @@
 'use client';
 import Image from "next/image";
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useMemo } from "react";
+import { motion } from "framer-motion";
 import Head from 'next/head';
 import GoogleReviews from './components/GoogleReviews';
 
@@ -29,7 +29,7 @@ export default function Home() {
     }
   ];
 
-  const images = [
+  const images = useMemo(() => [
     {
       src: '/sources/gallery/2.png',
       alt: 'Gözde Erkek Kuaförü - Dış Görünümü 1'
@@ -58,7 +58,7 @@ export default function Home() {
       src: '/sources/gallery/8.png',
       alt: 'Gözde Erkek Kuaförü - Salon Görünümü 7'
     }
-  ];
+  ], []);
 
   useEffect(() => {
     const timer = setInterval(() => {
