@@ -36,11 +36,11 @@ export default function Navbar() {
             <button onClick={() => scrollToSection('anasayfa')} className="text-gray-600 hover:text-gray-900">
               Ana Sayfa
             </button>
-            <button onClick={() => scrollToSection('hizmetler')} className="text-gray-600 hover:text-gray-900">
-              Hizmetler
-            </button>
             <button onClick={() => scrollToSection('hakkimizda')} className="text-gray-600 hover:text-gray-900">
               Hakkımızda
+            </button>
+            <button onClick={() => scrollToSection('hizmetler')} className="text-gray-600 hover:text-gray-900">
+              Hizmetler
             </button>
             <button onClick={() => scrollToSection('galeri')} className="text-gray-600 hover:text-gray-900">
               Galeri
@@ -78,11 +78,11 @@ export default function Navbar() {
             <button onClick={() => scrollToSection('anasayfa')} className="block w-full text-left px-3 py-2 text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">
               Ana Sayfa
             </button>
-            <button onClick={() => scrollToSection('hizmetler')} className="block w-full text-left px-3 py-2 text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">
-              Hizmetler
-            </button>
             <button onClick={() => scrollToSection('hakkimizda')} className="block w-full text-left px-3 py-2 text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">
               Hakkımızda
+            </button>
+            <button onClick={() => scrollToSection('hizmetler')} className="block w-full text-left px-3 py-2 text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">
+              Hizmetler
             </button>
             <button onClick={() => scrollToSection('galeri')} className="block w-full text-left px-3 py-2 text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">
               Galeri

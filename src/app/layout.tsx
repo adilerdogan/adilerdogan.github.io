@@ -1,14 +1,19 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PageShell from "@/components/PageShell";
 import MobileStickyCTA from "@/components/MobileStickyCTA";
 import LocalBusinessJsonLd from "@/components/LocalBusinessJsonLd";
 import FaqJsonLd from "@/components/FaqJsonLd";
 import { DEFAULT_OG_IMAGE } from "@/lib/site";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-body",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://adilerdogan.github.io'),
@@ -100,15 +105,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="tr" className={inter.variable}>
-      <body className={`${inter.className} antialiased`}>
+    <html lang="tr" className={plusJakarta.variable}>
+      <body className={`${plusJakarta.className} antialiased`}>
         <LocalBusinessJsonLd />
         <FaqJsonLd />
         <Header />
         <main
-          className="pb-20 pt-0 md:pb-0 [&>*:first-child]:-mt-[calc(max(0.875rem,env(safe-area-inset-top,0px))+4.5rem+0.75rem)] [&>*:first-child]:pt-[calc(max(0.875rem,env(safe-area-inset-top,0px))+4.5rem+0.75rem)] sm:[&>*:first-child]:-mt-[calc(max(0.875rem,env(safe-area-inset-top,0px))+4.75rem+0.75rem)] sm:[&>*:first-child]:pt-[calc(max(0.875rem,env(safe-area-inset-top,0px))+4.75rem+0.75rem)]"
+          className="pb-20 pt-0 md:pb-0 [&_.page-shell-inner>*:first-child]:-mt-[calc(max(0.875rem,env(safe-area-inset-top,0px))+4.5rem+0.75rem)] [&_.page-shell-inner>*:first-child]:pt-[calc(max(0.875rem,env(safe-area-inset-top,0px))+4.5rem+0.75rem)] sm:[&_.page-shell-inner>*:first-child]:-mt-[calc(max(0.875rem,env(safe-area-inset-top,0px))+4.75rem+0.75rem)] sm:[&_.page-shell-inner>*:first-child]:pt-[calc(max(0.875rem,env(safe-area-inset-top,0px))+4.75rem+0.75rem)]"
         >
-          {children}
+          <PageShell>{children}</PageShell>
         </main>
         <MobileStickyCTA />
         <Footer />
