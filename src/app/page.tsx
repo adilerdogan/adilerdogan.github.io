@@ -2,13 +2,11 @@
 import Image from "next/image";
 import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
-import Head from 'next/head';
-import GoogleReviews from './components/GoogleReviews';
+import { WHATSAPP_APPOINTMENT_URL } from "@/lib/site";
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const slides = [
@@ -60,6 +58,8 @@ export default function Home() {
     }
   ], []);
 
+  const galleryPreview = useMemo(() => images.slice(0, 6), [images]);
+
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -67,15 +67,6 @@ export default function Home() {
 
     return () => clearInterval(timer);
   }, [slides.length]);
-
-  useEffect(() => {
-    // Simulate loading time
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -190,37 +181,11 @@ export default function Home() {
     setCurrentImageIndex(index);
   };
 
-  if (isLoading) {
-    return (
-      <div className="fixed inset-0 flex items-center justify-center bg-white z-50">
-        <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          className="text-center"
-        >
-          <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600 font-medium">Yükleniyor...</p>
-        </motion.div>
-      </div>
-    );
-  }
-
   return (
     <>
-      <Head>
-        <title>Gözde Erkek Kuaförü - Akhisar&apos;ın En İyi Erkek Kuaförü</title>
-        <meta name="description" content="Akhisar&apos;ın merkezinde, yılların deneyimiyle hizmet veren Gözde Erkek Kuaförü. Profesyonel saç kesimi, sakal tıraşı ve bakım hizmetleri." />
-        <meta name="keywords" content="Akhisar berber, Akhisar erkek kuaförü, Gözde Erkek Kuaförü, saç kesimi, sakal tıraşı" />
-        <meta property="og:title" content="Gözde Erkek Kuaförü - Akhisar&apos;ın En İyi Erkek Kuaförü" />
-        <meta property="og:description" content="Akhisar&apos;ın merkezinde, yılların deneyimiyle hizmet veren Gözde Erkek Kuaförü. Profesyonel saç kesimi, sakal tıraşı ve bakım hizmetleri." />
-        <meta property="og:image" content="/sources/gallery/2.png" />
-        <meta property="og:url" content="https://adilerdogan.github.io" />
-        <link rel="canonical" href="https://adilerdogan.github.io" />
-      </Head>
-
       <div className="min-h-screen">
         {/* Hero Section with Slider */}
-        <section id="anasayfa" className="relative h-screen">
+        <section id="anasayfa" className="relative h-screen min-h-[32rem]">
           {slides.map((slide, index) => (
             <motion.div
               key={index}
@@ -229,53 +194,69 @@ export default function Home() {
               transition={{ duration: 1 }}
               className={`absolute inset-0`}
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 via-gray-900/50 to-transparent z-10" />
-        <Image
+              <Image
                 src={slide.image}
-                alt={`Akhisar Erkek Kuaförü - ${slide.title}`}
+                alt={`Gözde Erkek Kuaförü Akhisar berber — ${slide.title}`}
                 fill
-                className="object-cover"
+                className="z-0 object-cover"
                 priority={index === 0}
               />
-              <div className="relative z-20 h-full flex items-center">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                  <motion.div 
+              <div className="absolute inset-0 z-10 bg-gradient-to-r from-stone-950/92 via-stone-900/55 to-stone-900/15" />
+              <div className="absolute inset-0 z-10 bg-gradient-to-t from-stone-950/70 via-transparent to-stone-900/25" />
+              <div className="relative z-20 flex h-full items-center">
+                <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+                  <motion.div
                     className="max-w-2xl"
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
                   >
-                    <motion.h1 
-                      className="text-4xl md:text-6xl font-bold text-white mb-6"
+                    <motion.p
+                      className="section-eyebrow mb-4 text-amber-100/90"
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.25 }}
+                    >
+                      Akhisar berber · erkek kuaförü · Gözde
+                    </motion.p>
+                    <motion.h1
+                      className="mb-5 text-4xl font-bold tracking-tight text-white md:text-6xl md:leading-[1.08]"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: 0.4 }}
                     >
                       {slide.title}
                     </motion.h1>
-                    <motion.p 
-                      className="text-xl md:text-2xl text-gray-200 mb-8"
+                    <motion.p
+                      className="mb-10 max-w-xl text-lg leading-relaxed text-stone-200 md:text-xl"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: 0.6 }}
                     >
                       {slide.description}
                     </motion.p>
-                    <motion.div 
-                      className="flex flex-col sm:flex-row gap-4"
+                    <motion.div
+                      className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: 0.8 }}
                     >
-                      <button
-                        onClick={() => document.getElementById('iletisim')?.scrollIntoView({ behavior: 'smooth' })}
-                        className="px-8 py-4 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 transition duration-300 shadow-lg hover:shadow-xl"
+                      <a
+                        href={WHATSAPP_APPOINTMENT_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-primary"
                       >
                         Randevu Al
-                      </button>
+                      </a>
                       <button
-                        onClick={() => document.getElementById('hizmetler')?.scrollIntoView({ behavior: 'smooth' })}
-                        className="px-8 py-4 rounded-lg bg-white/10 text-white font-medium hover:bg-white/20 transition duration-300 backdrop-blur-sm"
+                        type="button"
+                        onClick={() =>
+                          document
+                            .getElementById('hizmetler')
+                            ?.scrollIntoView({ behavior: 'smooth' })
+                        }
+                        className="btn-hero-secondary"
                       >
                         Hizmetlerimiz
                       </button>
@@ -340,19 +321,20 @@ export default function Home() {
         </section>
 
         {/* Features Section */}
-        <section className="py-20 bg-gray-50 scroll-mt-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="scroll-mt-32 bg-surface-muted py-20 md:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <motion.div 
-              className="text-center mb-16"
+              className="mb-16 text-center"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+              <p className="section-eyebrow">Güven & kalite</p>
+              <h2 className="text-3xl font-bold tracking-tight text-stone-900 md:text-4xl">
                 Neden Bizi Tercih Etmelisiniz?
               </h2>
-              <p className="mt-4 text-lg text-gray-600">
+              <p className="mx-auto mt-4 max-w-2xl text-lg text-stone-600">
                 Profesyonel hizmet anlayışımız ve uzman ekibimizle fark yaratıyoruz
               </p>
             </motion.div>
@@ -384,11 +366,11 @@ export default function Home() {
               ].map((feature, index) => (
                 <motion.div
                   key={index}
-                  className="bg-white p-6 rounded-lg shadow-lg"
+                  className="card-elevated-hover p-8"
                   variants={fadeInUp}
                   whileHover={{ y: -5, transition: { duration: 0.2 } }}
                 >
-                  <div className="text-blue-600 mb-4">
+                  <div className="mb-5 text-brand">
                     <svg className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       {feature.icon === "shield" && (
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -401,8 +383,8 @@ export default function Home() {
                       )}
                     </svg>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{feature.title}</h3>
-                  <p className="text-gray-700">{feature.description}</p>
+                  <h3 className="mb-2 text-xl font-bold text-stone-900">{feature.title}</h3>
+                  <p className="leading-relaxed text-stone-600">{feature.description}</p>
                 </motion.div>
               ))}
             </motion.div>
@@ -410,198 +392,132 @@ export default function Home() {
         </section>
 
         {/* Hizmetler Section */}
-        <section id="hizmetler" className="py-20 bg-white scroll-mt-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="hizmetler" className="scroll-mt-32 bg-white py-20 md:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <motion.div 
-              className="text-center mb-16"
+              className="mb-16 text-center"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+              <p className="section-eyebrow">Salon hizmetleri</p>
+              <h2 className="text-3xl font-bold tracking-tight text-stone-900 md:text-4xl">
                 Hizmetlerimiz
               </h2>
-              <p className="mt-4 text-lg text-gray-600">
-                Profesyonel ekibimizle sizlere en iyi hizmeti sunuyoruz
+              <p className="mx-auto mt-4 max-w-2xl text-lg text-stone-600">
+                Saç kesimi, sakal, bakım ve daha fazlası — hepsi tek çatı altında.
               </p>
             </motion.div>
 
             <motion.div 
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+              className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
               variants={staggerContainer}
               initial="initial"
               whileInView="animate"
               viewport={{ once: true }}
             >
-              {services.map((service, index) => (
+              {services.slice(0, 6).map((service, index) => (
                 <motion.div
                   key={index}
-                  className="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 border border-gray-100"
+                  className="card-elevated-hover p-8"
                   variants={fadeInUp}
                   whileHover={{ y: -5, transition: { duration: 0.2 } }}
                 >
                   <motion.div 
-                    className="text-blue-600 mb-4"
-                    whileHover={{ scale: 1.1 }}
+                    className="mb-5 text-brand"
+                    whileHover={{ scale: 1.06 }}
                     transition={{ duration: 0.2 }}
                   >
                     {service.icon}
                   </motion.div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4 border-b border-gray-200 pb-2">{service.title}</h3>
-                  <p className="text-gray-800 font-medium">{service.description}</p>
+                  <h3 className="mb-4 border-b border-stone-200 pb-2 text-xl font-bold text-stone-900">
+                    {service.title}
+                  </h3>
+                  <p className="font-medium text-stone-600">{service.description}</p>
                 </motion.div>
               ))}
             </motion.div>
           </div>
         </section>
 
-        {/* Hakkımızda Section */}
-        <section id="hakkimizda" className="py-20 bg-gray-50 scroll-mt-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-                Akhisar&apos;ın En İyi Erkek Kuaförü
+        <section id="hakkimizda" className="scroll-mt-32 bg-surface-muted py-20 md:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-12 text-center">
+              <p className="section-eyebrow">Hakkımızda</p>
+              <h2 className="text-3xl font-bold tracking-tight text-stone-900 md:text-4xl">
+                Gözde Erkek Kuaförü
               </h2>
-              <p className="mt-4 text-lg text-gray-600">
-                Akhisar&apos;ın merkezinde, yılların deneyimiyle hizmetinizdeyiz
+              <p className="mx-auto mt-4 max-w-2xl text-lg text-stone-600">
+                Adil ve Baki Erdoğan — Akhisar’da berber ve erkek kuaförü, Hürriyet Mahallesi
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              <div className="space-y-8">
-                <div className="bg-white p-8 rounded-lg shadow-lg">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6 pb-4 border-b border-gray-200">Akhisar Gözde Erkek Kuaförü</h3>
-                  <p className="text-gray-700 leading-relaxed mb-6">
-                    Akhisar&apos;ın merkezinde, yılların deneyimiyle hizmet veren Gözde Erkek Kuaförü, Adil ve Baki Erdoğan kardeşlerin titizliği ve güler yüzüyle sizleri bekliyor! Saç kesimi, sakal tıraşı, cilt bakımı ve modern stil uygulamalarıyla hijyenik bir ortamda kaliteli bir hizmet sunuyoruz.
-                  </p>
-                  <p className="text-gray-700 leading-relaxed">
-                    Randevuya gerek kalmadan hemen uğrayabilir, stilinizi profesyonellere emanet edebilirsiniz. Kaliteli hizmet, uygun fiyat ve müşteri memnuniyetiyle fark yaratıyoruz. Gözde Erkek Kuaförü – Akhisar&apos;da stilin adresi!
-                  </p>
-                </div>
-
-                <div className="bg-white p-8 rounded-lg shadow-lg">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6 pb-4 border-b border-gray-200">Neden Biz?</h3>
-                  <ul className="space-y-4">
-                    <li className="flex items-start space-x-3">
-                      <svg className="w-6 h-6 text-blue-600 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-gray-700">Yılların deneyimi ve uzman kadro</span>
-                    </li>
-                    <li className="flex items-start space-x-3">
-                      <svg className="w-6 h-6 text-blue-600 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-gray-700">Hijyenik ve modern salon ortamı</span>
-                    </li>
-                    <li className="flex items-start space-x-3">
-                      <svg className="w-6 h-6 text-blue-600 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-gray-700">Randevusuz hizmet imkanı</span>
-                    </li>
-                    <li className="flex items-start space-x-3">
-                      <svg className="w-6 h-6 text-blue-600 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-gray-700">Uygun fiyat ve kaliteli hizmet</span>
-                    </li>
-                  </ul>
-                </div>
+            <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2">
+              <div className="card-elevated p-8">
+                <p className="leading-relaxed text-stone-600">
+                  Akhisar’da berber veya erkek kuaförü arayan misafirlerimize yılların tecrübesiyle
+                  saç kesimi, sakal tıraşı ve bakım sunuyoruz. Hijyenik ortam, güler yüz ve mümkün
+                  olduğunda uğrayabileceğiniz düzen bizim için önemli.
+                </p>
               </div>
-
-              <div className="space-y-8">
-                <div className="bg-white p-8 rounded-lg shadow-lg">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6 pb-4 border-b border-gray-200">Uzman Ekibimiz</h3>
-                  <div className="grid grid-cols-2 gap-6">
-                    <div className="text-center">
-                      <div className="w-32 h-32 mx-auto mb-4 text-blue-600">
-                        <svg className="w-full h-full" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                        </svg>
-                      </div>
-                      <h4 className="text-xl font-bold text-gray-900 mb-2">Adil Erdoğan</h4>
-                      <p className="text-gray-700">Uzman Kuaför</p>
-                    </div>
-                    <div className="text-center">
-                      <div className="w-32 h-32 mx-auto mb-4 text-blue-600">
-                        <svg className="w-full h-full" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                        </svg>
-                      </div>
-                      <h4 className="text-xl font-bold text-gray-900 mb-2">Baki Erdoğan</h4>
-                      <p className="text-gray-700">Uzman Kuaför</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-white p-8 rounded-lg shadow-lg">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6 pb-4 border-b border-gray-200">Vizyonumuz ve Misyonumuz</h3>
-                  <div className="space-y-6">
-                    <div>
-                      <h4 className="text-xl font-semibold text-gray-900 mb-3 flex items-center">
-                        <svg className="w-6 h-6 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                        Vizyonumuz
-                      </h4>
-                      <p className="text-gray-700 leading-relaxed">
-                        Akhisar&apos;ın en iyi erkek kuaförü olarak, müşterilerimize en kaliteli hizmeti sunmak ve onların beklentilerini aşmak için çalışıyoruz.
-                      </p>
-                    </div>
-                    <div>
-                      <h4 className="text-xl font-semibold text-gray-900 mb-3 flex items-center">
-                        <svg className="w-6 h-6 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                        </svg>
-                        Misyonumuz
-                      </h4>
-                      <p className="text-gray-700 leading-relaxed">
-                        Profesyonel ekibimiz ve modern tekniklerimizle müşterilerimize en iyi hizmeti sunarak, onların güvenini kazanmak ve memnuniyetlerini sağlamak.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+              <div className="card-elevated p-8">
+                <ul className="space-y-3 text-stone-600">
+                  <li className="flex gap-2">
+                    <span className="text-brand">✓</span>
+                    Deneyimli ekip
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-brand">✓</span>
+                    Modern ve temiz salon
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-brand">✓</span>
+                    Uygun fiyat
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-brand">✓</span>
+                    Merkezi konum
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
         </section>
 
         {/* Galeri Section */}
-        <section id="galeri" className="py-20 bg-white scroll-mt-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="galeri" className="scroll-mt-32 bg-white py-20 md:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <motion.div 
-              className="text-center mb-12"
+              className="mb-12 text-center"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              <p className="section-eyebrow">Salon</p>
+              <h2 className="mb-4 text-3xl font-bold tracking-tight text-stone-900 md:text-4xl">
                 Galeri
               </h2>
-              <p className="text-lg text-gray-600">
-                Modern ve şık salonumuzdan kareler
+              <p className="mx-auto max-w-2xl text-lg text-stone-600">
+                Salonumuzdan birkaç fotoğraf.
               </p>
             </motion.div>
 
             <motion.div 
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
               variants={staggerContainer}
               initial="initial"
               whileInView="animate"
               viewport={{ once: true }}
             >
-              {images.map((image, index) => (
+              {galleryPreview.map((image, index) => (
                 <motion.div
-                  key={index}
-                  className={`relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer ${
-                    index === 6 ? 'md:col-span-2 lg:col-span-1 lg:col-start-2' : ''
-                  }`}
+                  key={image.src}
+                  className="group relative cursor-pointer overflow-hidden rounded-2xl border border-stone-200/80 shadow-sm shadow-stone-900/5 transition-all duration-300 hover:border-stone-300 hover:shadow-md"
                   variants={fadeInUp}
                   whileHover={{ y: -5 }}
-                  onClick={() => handleImageClick(image.src, index)}
+                  onClick={() => handleImageClick(image.src, images.findIndex((i) => i.src === image.src))}
                 >
                   <div className="relative aspect-[4/3] w-full">
                     <Image
@@ -631,38 +547,36 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Google Reviews Section */}
-        <GoogleReviews />
-
         {/* İletişim Section */}
-        <section id="iletisim" className="py-20 bg-white scroll-mt-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        <section id="iletisim" className="scroll-mt-32 bg-surface-muted py-20 md:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-12 text-center">
+              <p className="section-eyebrow">Bize ulaşın</p>
+              <h2 className="mb-4 text-3xl font-bold tracking-tight text-stone-900 md:text-4xl">
                 Akhisar Erkek Kuaförü İletişim
               </h2>
-              <p className="text-lg text-gray-600">
-                Akhisar&apos;ın merkezinde, Hürriyet Mahallesi&apos;nde hizmetinizdeyiz
+              <p className="mx-auto max-w-2xl text-lg text-stone-600">
+                Hürriyet Mahallesi — telefon, WhatsApp ve harita aşağıda.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* İletişim Bilgileri */}
-              <div className="bg-white rounded-lg shadow-lg p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-8 pb-4 border-b border-gray-200">
+              <div className="card-elevated p-8">
+                <h3 className="mb-8 border-b border-stone-200 pb-4 text-2xl font-bold text-stone-900">
                   İletişim Bilgileri
                 </h3>
                 <div className="space-y-8">
-                  <div className="flex items-start space-x-4 group">
-                    <div className="bg-blue-50 p-3 rounded-lg group-hover:bg-blue-100 transition-colors duration-300">
-                      <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="group flex items-start space-x-4">
+                    <div className="icon-box">
+                      <svg className="h-6 w-6 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
                     </div>
                     <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-1">Adres</h4>
-                      <p className="text-gray-600 leading-relaxed">
+                      <h4 className="mb-1 text-lg font-semibold text-stone-900">Adres</h4>
+                      <p className="leading-relaxed text-stone-600">
                         Hürriyet Mahallesi 151. Sokak,<br />
                         Hilaliye Cd. No: 31,<br />
                         45200 Akhisar/Manisa
@@ -670,31 +584,31 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <div className="flex items-start space-x-4 group">
-                    <div className="bg-blue-50 p-3 rounded-lg group-hover:bg-blue-100 transition-colors duration-300">
-                      <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="group flex items-start space-x-4">
+                    <div className="icon-box">
+                      <svg className="h-6 w-6 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
                     </div>
                     <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-1">Telefon</h4>
+                      <h4 className="mb-1 text-lg font-semibold text-stone-900">Telefon</h4>
                       <a 
                         href="tel:+905435566620" 
-                        className="text-blue-600 hover:text-blue-700 font-medium transition-colors duration-300"
+                        className="font-medium text-brand transition-colors hover:text-brand-hover"
                       >
                         0(543) 556 66 20
           </a>
         </div>
                   </div>
 
-                  <div className="flex items-start space-x-4 group">
-                    <div className="bg-blue-50 p-3 rounded-lg group-hover:bg-blue-100 transition-colors duration-300">
-                      <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="group flex items-start space-x-4">
+                    <div className="icon-box">
+                      <svg className="h-6 w-6 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                       </svg>
                     </div>
                     <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-3">WhatsApp Randevu</h4>
+                      <h4 className="mb-3 text-lg font-semibold text-stone-900">WhatsApp Randevu</h4>
                       <a
                         href="https://wa.me/905435566620"
           target="_blank"
@@ -712,12 +626,12 @@ export default function Home() {
               </div>
 
               {/* Google Maps */}
-              <div className="bg-white rounded-lg shadow-lg p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-8 pb-4 border-b border-gray-200">
+              <div className="card-elevated p-8">
+                <h3 className="mb-8 border-b border-stone-200 pb-4 text-2xl font-bold text-stone-900">
                   Konum
                 </h3>
                 <div className="space-y-6">
-                  <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-md">
+                  <div className="aspect-w-16 aspect-h-9 overflow-hidden rounded-xl border border-stone-200/80 shadow-sm">
                     <iframe
                       src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6208.662206762287!2d27.834227!3d38.916409!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b9d201a6a6df6f%3A0xb82d16194bb443d1!2sAkhisar%20G%C3%B6zde%20Erkek%20Kuaf%C3%B6r%C3%BC%20-%20Akhisar%20Berber%20Hizmeti%20-%20Adil%20%26%20Baki%20Erdo%C4%9Fan!5e0!3m2!1str!2str!4v1746699671562!5m2!1str!2str"
                       width="100%"
@@ -734,7 +648,7 @@ export default function Home() {
                       href="https://maps.google.com/?q=38.916409,27.834227"
           target="_blank"
           rel="noopener noreferrer"
-                      className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-300 shadow-sm hover:shadow-md"
+                      className="btn-primary-sm"
                     >
                       <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -746,7 +660,7 @@ export default function Home() {
                       href="https://www.google.com/maps/dir/?api=1&destination=38.916409,27.834227"
           target="_blank"
           rel="noopener noreferrer"
-                      className="inline-flex items-center px-6 py-3 border border-gray-300 text-base font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition-colors duration-300 shadow-sm hover:shadow-md"
+                      className="inline-flex items-center rounded-xl border border-stone-300 bg-white px-6 py-3 text-base font-semibold text-stone-700 shadow-sm transition hover:border-stone-400 hover:bg-stone-50"
                     >
                       <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />

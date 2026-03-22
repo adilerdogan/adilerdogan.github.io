@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  /* Asıl ayarlar next.config.js içinde (GitHub Pages statik export). */
 };
 
 export default nextConfig;

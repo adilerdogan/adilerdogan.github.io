@@ -2,34 +2,42 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
-import Footer from '@/components/Footer';
+import Footer from "@/components/Footer";
+import MobileStickyCTA from "@/components/MobileStickyCTA";
+import LocalBusinessJsonLd from "@/components/LocalBusinessJsonLd";
+import FaqJsonLd from "@/components/FaqJsonLd";
+import { DEFAULT_OG_IMAGE } from "@/lib/site";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://adilerdogan.github.io'),
   title: {
-    default: 'Akhisar\'ın En İyi Erkek Kuaförü | Gözde Erkek Kuaförü',
-    template: '%s | Akhisar Gözde Erkek Kuaförü'
+    default: 'Akhisar Berber & Erkek Kuaförü | Gözde — Hürriyet Mah.',
+    template: '%s | Akhisar Berber & Gözde Erkek Kuaförü'
   },
-  description: 'Akhisar\'ın merkezinde, profesyonel saç kesimi ve sakal tıraşı hizmetleri. Adil Erdoğan ve Baki Erdoğan tarafından işletilen, Akhisar\'ın en kaliteli erkek kuaför salonu. Modern ve şık ortamda uzman ekibiyle hizmetinizdeyiz.',
+  description:
+    'Akhisar Hürriyet Mahallesi’nde erkek kuaförü ve berber: saç kesimi, sakal tıraşı ve bakım. Merkeze yakın konum; telefon ve WhatsApp ile randevu. Adil & Baki Erdoğan.',
   keywords: [
-    'Akhisar Berber',
+    'akhisar berber',
+    'Akhisar berber',
+    'akhisar erkek kuaförü',
+    'Akhisar erkek kuaförü',
+    'akhisar en yakın berber',
+    'Akhisar en yakın erkek kuaförü',
+    'Akhisar yakın erkek kuaförü',
+    'Akhisar merkez berber',
+    'Akhisar Hürriyet berber',
     'Akhisar Gözde Erkek Kuaförü',
-    'Akhisar Erkek Kuaförü',
-    'Akhisar Merkez Berber',
     'Akhisar Merkez Erkek Kuaförü',
-    'Akhisar En İyi Berber',
-    'Akhisar En İyi Erkek Kuaförü',
-    'Akhisar Profesyonel Berber',
-    'Akhisar Profesyonel Erkek Kuaförü',
     'Adil Erdoğan Berber',
     'Baki Erdoğan Berber',
     'Akhisar Saç Kesimi',
     'Akhisar Sakal Tıraşı',
-    'Akhisar Erkek Bakım',
-    'Akhisar Berber Salonu',
-    'Akhisar Erkek Kuaför Salonu'
+    'Akhisar berber salonu',
+    'Akhisar traş',
+    'Manisa Akhisar berber',
+    'Akhisar erkek berber',
   ],
   authors: [{ name: 'Adil & Baki Erdoğan' }],
   creator: 'Adil & Baki Erdoğan',
@@ -44,22 +52,24 @@ export const metadata: Metadata = {
     locale: 'tr_TR',
     url: 'https://adilerdogan.github.io',
     siteName: 'Akhisar Gözde Erkek Kuaförü',
-    title: 'Akhisar\'ın En İyi Erkek Kuaförü | Gözde Erkek Kuaförü',
-    description: 'Akhisar\'ın merkezinde, profesyonel saç kesimi ve sakal tıraşı hizmetleri. Adil Erdoğan ve Baki Erdoğan tarafından işletilen, Akhisar\'ın en kaliteli erkek kuaför salonu.',
+    title: 'Akhisar Berber & Erkek Kuaförü | Gözde — Hürriyet Mah.',
+    description:
+      'Akhisar’da erkek kuaförü ve berber arayanlar için Hürriyet Mahallesi’nde salonumuz. Saç, sakal ve bakım — randevu için arayın veya WhatsApp’tan yazın.',
     images: [
       {
-        url: '/sources/logo.png',
-        width: 800,
-        height: 600,
-        alt: 'Akhisar Gözde Erkek Kuaförü Logo',
+        url: DEFAULT_OG_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: 'Gözde Erkek Kuaförü — Akhisar salon içi',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Akhisar\'ın En İyi Erkek Kuaförü | Gözde Erkek Kuaförü',
-    description: 'Akhisar\'ın merkezinde, profesyonel saç kesimi ve sakal tıraşı hizmetleri. Modern ve şık ortamda uzman ekibiyle hizmetinizdeyiz.',
-    images: ['/sources/logo.png'],
+    title: 'Akhisar Berber & Erkek Kuaförü | Gözde',
+    description:
+      'Hürriyet Mahallesi, Akhisar: erkek kuaförü ve berber. Saç kesimi, sakal tıraşı; telefon 0543 556 66 20.',
+    images: [DEFAULT_OG_IMAGE],
   },
   robots: {
     index: true,
@@ -90,12 +100,17 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="tr">
-      <body className={inter.className}>
+    <html lang="tr" className={inter.variable}>
+      <body className={`${inter.className} antialiased`}>
+        <LocalBusinessJsonLd />
+        <FaqJsonLd />
         <Header />
-        <main className="pt-16">
+        <main
+          className="pb-20 pt-0 md:pb-0 [&>*:first-child]:-mt-[calc(max(0.875rem,env(safe-area-inset-top,0px))+4.5rem+0.75rem)] [&>*:first-child]:pt-[calc(max(0.875rem,env(safe-area-inset-top,0px))+4.5rem+0.75rem)] sm:[&>*:first-child]:-mt-[calc(max(0.875rem,env(safe-area-inset-top,0px))+4.75rem+0.75rem)] sm:[&>*:first-child]:pt-[calc(max(0.875rem,env(safe-area-inset-top,0px))+4.75rem+0.75rem)]"
+        >
           {children}
         </main>
+        <MobileStickyCTA />
         <Footer />
       </body>
     </html>

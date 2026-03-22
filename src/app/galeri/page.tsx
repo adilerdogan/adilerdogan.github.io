@@ -46,24 +46,25 @@ export default function Galeri() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-surface-muted py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+        <div className="mb-12 text-center">
+          <p className="section-eyebrow">Salon</p>
+          <h1 className="mb-4 text-4xl font-bold tracking-tight text-stone-900">
             Galeri
           </h1>
-          <p className="text-lg text-gray-600">
-            Modern ve şık salonumuzdan kareler
+          <p className="mx-auto max-w-2xl text-lg text-stone-600">
+            Salon içi ve dışından fotoğraflar.
           </p>
         </div>
 
         {/* Gallery Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {images.map((image, index) => (
             <div
               key={index}
-              className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="group relative overflow-hidden rounded-2xl border border-stone-200/80 shadow-sm shadow-stone-900/5 transition-all duration-300 hover:border-stone-300 hover:shadow-md"
             >
               <div className="relative h-64">
                 <Image
