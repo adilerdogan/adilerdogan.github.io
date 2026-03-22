@@ -70,13 +70,13 @@ export default function Header() {
 
   return (
     <div
-      className="pointer-events-none fixed inset-x-0 top-0 z-[9999] isolate"
+      className="pointer-events-none fixed inset-x-0 top-0 z-[9999] isolate px-4 sm:px-6 lg:px-8"
       style={{
         paddingTop: 'max(0.875rem, env(safe-area-inset-top, 0px))',
       }}
     >
       <motion.header
-        className={`pointer-events-auto border-b backdrop-blur-2xl backdrop-saturate-150 transition-[background-color,border-color,box-shadow] duration-300 ease-out ${shellGlass} shadow-[0_1px_0_rgba(255,255,255,0.06)_inset,0_12px_40px_-12px_rgba(0,0,0,0.35)]`}
+        className={`pointer-events-auto mx-auto w-full max-w-7xl overflow-hidden rounded-2xl border-b backdrop-blur-2xl backdrop-saturate-150 transition-[background-color,border-color,box-shadow] duration-300 ease-out ${shellGlass} shadow-[0_1px_0_rgba(255,255,255,0.06)_inset,0_12px_40px_-12px_rgba(0,0,0,0.35)]`}
         initial={reduceMotion ? false : { opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.42, ease: [0.4, 0, 0.2, 1] }}
@@ -86,7 +86,7 @@ export default function Header() {
           aria-hidden
         />
 
-        <div className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between gap-4 px-4 sm:h-[4.75rem] sm:px-6 lg:px-8">
+        <div className="flex h-[4.5rem] w-full items-center justify-between gap-4 px-4 sm:h-[4.75rem] sm:px-6 lg:px-8">
           <Link
             href="/"
             className="group flex min-w-0 shrink items-center gap-3 rounded-2xl py-1 pr-2 transition-colors hover:bg-white/[0.06] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400/80"
