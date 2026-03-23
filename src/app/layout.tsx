@@ -105,8 +105,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="tr" className={plusJakarta.variable}>
-      <body className={`${plusJakarta.className} antialiased`}>
+    <html lang="tr" className={plusJakarta.variable} suppressHydrationWarning>
+      <body
+        className={`${plusJakarta.className} antialiased`}
+        suppressHydrationWarning
+      >
         <LocalBusinessJsonLd />
         <FaqJsonLd />
         <Header />

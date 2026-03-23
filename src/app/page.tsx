@@ -306,33 +306,45 @@ export default function Home() {
             ))}
           </motion.div>
 
-          {/* Scroll Indicator */}
-          <motion.div 
+          {/* Scroll Indicator — tıklanınca Hakkımızda bölümüne kayar */}
+          <motion.div
             className="absolute bottom-24 left-12 z-20 hidden md:block"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 1.2 }}
           >
-            <div className="flex flex-col items-center space-y-3">
-              <span className="text-white text-sm font-medium bg-black/50 px-4 py-2 rounded-full backdrop-blur-sm shadow-lg">
+            <motion.button
+              type="button"
+              aria-label="Aşağı kaydır — Hakkımızda bölümüne git"
+              onClick={() =>
+                document.getElementById('hakkimizda')?.scrollIntoView({
+                  behavior: reduceMotion ? 'auto' : 'smooth',
+                })
+              }
+              className="flex cursor-pointer flex-col items-center space-y-3 rounded-2xl border-0 bg-transparent p-0 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+              whileHover={reduceMotion ? undefined : { scale: 1.03 }}
+              whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+            >
+              <span className="rounded-full bg-black/50 px-4 py-2 text-sm font-medium text-white shadow-lg backdrop-blur-sm">
                 Aşağı Kaydır
               </span>
-              <motion.svg 
-                className="w-8 h-8 text-white bg-black/50 p-2 rounded-full backdrop-blur-sm shadow-lg" 
-                fill="none" 
-                stroke="currentColor" 
+              <motion.svg
+                className="h-8 w-8 rounded-full bg-black/50 p-2 text-white shadow-lg backdrop-blur-sm"
+                fill="none"
+                stroke="currentColor"
                 viewBox="0 0 24 24"
+                aria-hidden
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
               >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth={2} 
-                  d="M19 14l-7 7m0 0l-7-7m7 7V3" 
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
                 />
               </motion.svg>
-            </div>
+            </motion.button>
           </motion.div>
         </section>
 
@@ -351,7 +363,7 @@ export default function Home() {
                 Gözde Erkek Kuaförü
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-lg text-stone-600">
-                Adil ve Baki Erdoğan — Akhisar’da berber ve erkek kuaförü, Hürriyet Mahallesi
+                Adil ve Baki Erdoğan — Akhisar’da berber ve erkek kuaförü, Hilaliye Caddesi
               </p>
             </motion.div>
 
